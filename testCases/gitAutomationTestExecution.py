@@ -1,9 +1,8 @@
 import os.path
 from utilities.gitAutomationUtils import *
-import pytest
 
 git_auto = TestExecutionAutomation()
-non_testing_files = ["__init__.py"]
+non_testing_files = ["__init__.py", "gitAutomationTestExecution.py", "updatedsort.py"]
 
 
 class GitAutomationTestExecutionTest:
@@ -22,7 +21,7 @@ class GitAutomationTestExecutionTest:
         if len(tests) > 0:
             for test in tests:
                 test_name = os.path.splitext(test)
-                if test_name[1] == ".py":
+                if test_name[1] == ".py" and not(test in non_testing_files):
                     try:
                         git_auto.test_case_execution(test)
                         res.append((test, "PASSED"))
