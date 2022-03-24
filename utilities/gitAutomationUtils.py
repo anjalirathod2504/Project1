@@ -2,7 +2,7 @@ import os
 import configparser
 import xlsxwriter
 import datetime
-
+import pytest
 ini_file = os.path.abspath(os.path.dirname(".\\..\configurations\."))
 config = configparser.RawConfigParser()
 config.read(ini_file + "\\config.ini")
@@ -52,7 +52,8 @@ class TestExecutionAutomation:
         if "testCases" in folders:
             os.chdir(testCases_path)
             if file_name in os.listdir():
-                os.system(command=file_name)
+                test = os.system(command=file_name)
+
             else:
                 print("The file is not available in this directory")
         else:

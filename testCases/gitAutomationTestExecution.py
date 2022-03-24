@@ -1,5 +1,6 @@
 import os.path
 from utilities.gitAutomationUtils import *
+import pytest
 
 git_auto = TestExecutionAutomation()
 non_testing_files = ["__init__.py"]
