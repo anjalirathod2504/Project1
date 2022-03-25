@@ -64,7 +64,7 @@ class TestExecutionAutomation:
         os.chdir(testData_path)
         # results_list = os.listdir()
         curr_date = str(datetime.date.today())
-        workbook = xlsxwriter.Workbook("Results_" + curr_date + ".xlsx")
+        workbook = xlsxwriter.Workbook("Test_case_result"+ ".xlsx")
         worksheet = workbook.add_worksheet("Test_case_results")
         worksheet.set_column(0, 0, 50)
         bold = workbook.add_format({'bold': True})
