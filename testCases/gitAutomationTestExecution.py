@@ -1,7 +1,7 @@
 import os.path
 from utilities.gitAutomationUtils import *
 
-git_auto = TestExecutionAutomation()
+git_auto =TestExecutionAutomation()
 non_testing_files = ["__init__.py", "gitAutomationTestExecution.py", "updatedsort.py"]
 
 
