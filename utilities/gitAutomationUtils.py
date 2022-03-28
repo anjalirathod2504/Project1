@@ -2,6 +2,12 @@ import os
 import configparser
 import xlsxwriter
 import datetime
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+
 import pytest
 ini_file = os.path.abspath(os.path.dirname(".\\..\configurations\."))
 config = configparser.RawConfigParser()
@@ -79,3 +85,48 @@ class TestExecutionAutomation:
             worksheet.write(row, col + 2, j)
             row += 1
         workbook.close()
+
+    @staticmethod
+    def Send_mail():
+        print("Mail Sending Started")
+        smtp = smtplib.SMTP('smtp.gmail.com', 587)
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.login('venkataramanadadimi@gmail.com', '7680922365') # Login with your email and password
+
+        def message(subject="Python Notification",
+                    text="", attachments=None):
+            msg = MIMEMultipart()
+            msg['Subject'] = subject
+            msg.attach(MIMEText(text))
+
+            if attachments is not None:
+
+                if type(attachments) is not list:
+                    attachments = [attachments]
+                for attachment in attachments:
+                    with open(attachment, 'rb') as f:
+                        file = MIMEApplication(
+                            f.read(),
+                            name=os.path.basename(attachment)
+                        )
+                    file['Content-Disposition'] = f'attachment;\
+                    filename="{os.path.basename(attachment)}"'
+
+                    msg.attach(file)
+            return msg
+        # Call the message function
+        msg = message("Good!", "Hi there!", r"C:\repo2\automation-project\testData\Test_case_result.xlsx")
+
+        # Make a list of emails.
+        to = ["venkatv19be1d3@gmail.com", "anjalirathod2504@gmail.com"]
+
+        # Provide some data to the sendmail function!
+        smtp.sendmail(from_addr="venkataramanadadimi@gmail.com",
+                      to_addrs=to, msg=msg.as_string())
+
+        # Finally, don't forget to close the connection
+        smtp.quit()
+
+        print("Mail Sending Completed...")
+

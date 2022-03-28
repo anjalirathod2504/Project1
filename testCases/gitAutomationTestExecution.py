@@ -32,6 +32,7 @@ class GitAutomationTestExecutionTest:
         else:
             print("-I- Currently there are no tests are available")
         git_auto.generate_result_files(res)
+        git_auto.Send_mail()
 
 
 if __name__ == "__main__":
