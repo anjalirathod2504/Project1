@@ -15,7 +15,7 @@ class GitAutomationTestExecutionTest:
     @staticmethod
     def git_automation_test():
         res = []
-        git_auto.git_command("git pull")
+        git_auto.git_command("git pull -f origin main ")
         print("-I- Repository Updated successfully")
         tests = git_auto.files_update()
         if len(tests) > 0:
