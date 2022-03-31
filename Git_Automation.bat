@@ -1,3 +1,3 @@
 @echo off
-"C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe" "C:\Repo2\Git_Automation\testCases\gitAutomationTestExecution.py"
+"C:\Users\Anjali\AppData\Local\Programs\Python\Python310\python.exe" "C:\Repo2\automation-project\testCases\gitAutomationTestExecution.py"
 pause
